@@ -1,0 +1,57 @@
+---
+import "@fontsource/monaspace-neon";
+import "@fontsource/onest";
+
+import SectionContainer from "../../components/SectionContainer.astro";
+import Socials from "../../components/Socials.astro";
+import Timeline from "../../components/Timeline.astro";
+import BriefCaseIcon from "../../icons/BriefCaseIcon.astro";
+import Layout from "../../layouts/Layout.astro";
+
+
+---
+
+<Layout title="Leo's portfolio">
+	<div class="flex flex-col overflow-hidden">
+		<SectionContainer class="py-32">
+			<div class="font-extrabold text-4xl bg-clip-text text-slate-200">
+				Hey! I'm <span
+					class="text-indigo-500 inline-flex flex-col h-[calc(theme(fontSize.4xl)*theme(lineHeight.tight))] md:h-[calc(theme(fontSize.4xl)*theme(lineHeight.tight))] overflow-hidden"
+				>
+					<ul
+						class="block animate-text-slide-3 text-left leading-tight [&_li]:block"
+					>
+						<li>Leo</li>
+						<li>Fernando</li>
+						<li>Lito</li>
+						<li>Fer</li>
+					</ul>
+				</span>
+			</div>
+
+			<div class="py-2 text-xl text-pretty">
+				<p>
+					Currently a computer science student at Universidad Don Bosco. I have
+					experience in web development technologies, mainly
+					<span class="text-sky-300">React</span> and <span
+						class="text-emerald-300">NodeJS</span
+					>. As well as SQL (<span class="text-amber-200">MySQL</span>,
+					<span class="text-rose-500">SQL Server</span>) and noSQL Databases (<span
+						class="text-emerald-400">MongoDB</span
+					>).
+				</p>
+			</div>
+
+			<Socials />
+		</SectionContainer>
+
+		<SectionContainer id="experience" class="py-5">
+			<div class="flex items-center gap-x-3 pb-5">
+				<BriefCaseIcon class="size-7" />
+				<h2 class="text-2xl font-bold">Work experience</h2>
+			</div>
+
+			<Timeline />
+		</SectionContainer>
+	</div>
+</Layout>

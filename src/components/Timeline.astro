@@ -1,0 +1,16 @@
+---
+import { experience } from "../data/dev-experience";
+import { getLangFromUrl } from "../i18n/utils";
+import TimelineItem from "./TimelineItem.astro";
+
+const lang = getLangFromUrl(Astro.url);
+
+---
+
+<ol class="relative">
+  {
+    experience[lang].map(({ title, date, description, company }) => (
+      <TimelineItem company={company} date={date} title={title} description={description} />
+    ))
+  }
+</ol>

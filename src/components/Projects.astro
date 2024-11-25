@@ -1,0 +1,24 @@
+---
+import { projects } from "../data/dev-projects";
+import { getLangFromUrl } from "../i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+---
+
+{
+  projects[lang].map(({ title, description, tags, link, github, image }) => (
+    <article class="py-5">
+      <h3 class="text-2xl font-semibold text-slate-200 pb-2">{title}</h3>
+      <p class="text-pretty">{description}</p>
+      <ul class="flex flex-row gap-x-3 py-2">
+        {tags.map((tag) => (
+          <span class={`flex items-center gap-x-2 px-3 py-0.5 rounded-full ${tag.class}`}>
+            <tag.icon class="size-5" />
+            <li>{tag.name}</li>
+          </span>
+        ))}
+      </ul>
+      <img class="object-cover h-full rounded-lg shadow-xl shadow-white/10" src={image} alt={`${image} screenshot`} />
+    </article>
+  ))
+}

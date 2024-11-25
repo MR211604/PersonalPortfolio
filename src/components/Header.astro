@@ -1,0 +1,51 @@
+---
+import { getLangFromUrl, useTranslations } from "../i18n/utils";
+import DarkThemeIcon from "../icons/DarkThemeIcon.astro";
+import LanguagePicker from "./LanguagePicker.astro";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<div
+  class="text-white flex justify-between items-center py-5 md:w-[750px] mx-auto"
+>
+  <nav class="flex flex-row gap-x-10 cursor-pointer">
+    <p class="group relative">
+      <a href=`#top`>{t("nav.home")}</a>
+      <span
+        class="absolute -bottom-1 left-0 w-0 transition-all h-0.5 bg-indigo-600 group-hover:w-full"
+      ></span>
+    </p>
+    <p class="group relative">
+      <a href=`#experience`>{t("nav.experience")}</a>
+      <span
+        class="absolute -bottom-1 left-0 w-0 transition-all h-0.5 bg-indigo-600 group-hover:w-full"
+      ></span>
+    </p>
+    <p class="group relative">
+      <a href=`#projects`>{t("nav.projects")}</a>
+      <span
+        class="absolute -bottom-1 left-0 w-0 transition-all h-0.5 bg-indigo-600 group-hover:w-full"
+      ></span>
+    </p>
+    <p class="group relative">
+      <a href=`#about-me`>{t("nav.aboutMe")}</a>
+      <span
+        class="absolute -bottom-1 left-0 w-0 transition-all h-0.5 bg-indigo-600 group-hover:w-full"
+      ></span>
+    </p>
+    <p class="group relative">
+      <a href=`#contact`>{t("nav.contact")}</a>
+      <span
+        class="absolute -bottom-1 left-0 w-0 transition-all h-0.5 bg-indigo-600 group-hover:w-full"
+      ></span>
+    </p>
+  </nav>
+
+  <div class="flex items-center flex-row gap-x-10">
+    <DarkThemeIcon />
+
+    <LanguagePicker />
+  </div>
+</div>

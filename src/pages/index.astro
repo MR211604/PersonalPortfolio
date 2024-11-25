@@ -1,0 +1,72 @@
+---
+import "@fontsource/monaspace-neon";
+import "@fontsource/onest";
+
+import SectionContainer from "../components/SectionContainer.astro";
+import Socials from "../components/Socials.astro";
+import Timeline from "../components/Timeline.astro";
+import BriefCaseIcon from "../icons/BriefCaseIcon.astro";
+import Layout from "../layouts/Layout.astro";
+import ProjectsIcon from "../icons/ProjectsIcon.astro";
+import Projects from "../components/Projects.astro";
+---
+
+<Layout title="Portafolio de Leo">
+	<div class="flex flex-col overflow-hidden">
+		<SectionContainer class="py-32">
+			<div
+				class="font-extrabold tracking-tight text-5xl bg-clip-text text-slate-200"
+			>
+				¡Hola! soy <span
+					class="text-indigo-500 inline-flex flex-col h-[calc(theme(fontSize.5xl)*theme(lineHeight.tight))] md:h-[calc(theme(fontSize.5xl)*theme(lineHeight.tight))] overflow-hidden"
+				>
+					<ul
+						class="block animate-text-slide-3 text-left leading-tight [&_li]:block"
+					>
+						<li>Leo</li>
+						<li>Fernando</li>
+						<li>Lito</li>
+						<li>Fer</li>
+					</ul>
+				</span>
+			</div>
+
+			<div class="py-2 text-xl text-pretty">
+				<p>
+					Actualmente estudiante de Ingeniera en computación. Cuento con
+					experiencia en tecnologías dedicadas al desarrollo web, principalmente
+					<span class="text-sky-300">React</span> y <span
+						class="text-emerald-300">NodeJS</span
+					>, así como bases de datos SQL (<span class="text-amber-200"
+						>MySQL</span
+					>,
+					<span class="text-rose-500">SQL Server</span>) y no SQL (<span
+						class="text-emerald-400">MongoDB</span
+					>).
+				</p>
+			</div>
+
+			<Socials />
+		</SectionContainer>
+
+		<SectionContainer id="experience" class="py-10">
+			<div class="flex items-center gap-x-3 pb-5">
+				<BriefCaseIcon class="size-7" />
+				<h2 class="text-3xl font-extrabold text-slate-200">
+					Experiencia laboral
+				</h2>
+			</div>
+
+			<Timeline />
+		</SectionContainer>
+
+		<SectionContainer id="projects" class="py-10">
+			<div class="flex items-center gap-x-3 pb-5">
+				<ProjectsIcon class="size-7" />
+				<h2 class="text-3xl font-extrabold text-slate-200">Proyectos</h2>
+			</div>
+
+			<Projects />
+		</SectionContainer>
+	</div>
+</Layout>
