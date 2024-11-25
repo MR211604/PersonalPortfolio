@@ -35,7 +35,8 @@ interface Project {
   link: string;
   github: string;
   image: string;
-  tags: TagsType[];  // `tags` es un arreglo de las claves de TAGS
+  redirectName: string;
+  tags: TagsType[]; 
 }
 
 export const projects: { [key: string]: Project[] } = {
@@ -43,10 +44,22 @@ export const projects: { [key: string]: Project[] } = {
     {
       title: 'Wonders from El Salvador ',
       description: 'Proyecto de desarrollo web que busca promover el turismo en El Salvador, mostrando los lugares más emblemáticos del país, contando con la posibilidad de filtrar, valorar y comentar cada lugar para que los usuarios puedan compartir sus experiencias.',
-      link: '/',
-      github: '/',
+      link: '/', 
+      redirectName: 'Link a la página',     
+      github: 'https://github.com/MR211604/wonders-from-el-salvador',
       image: '/src/images/wonders-from-el-salvador.webp',
       tags: [TAGS.REACT, TAGS.MYSQL, TAGS.EXPRESSJS, TAGS.TAILWINDCSS],
     },
   ],
+  'en': [
+    {
+      title: 'Wonders from El Salvador ',
+      description: 'Web development project that seeks to promote tourism in El Salvador, showing the most emblematic places in the country, with the possibility of filtering, rating and commenting on each place so that users can share their experiences.',
+      link: '/',
+      redirectName: 'Link to the page',
+      github: 'https://github.com/MR211604/wonders-from-el-salvador',
+      image: '/src/images/wonders-from-el-salvador.webp',
+      tags: [TAGS.REACT, TAGS.MYSQL, TAGS.EXPRESSJS, TAGS.TAILWINDCSS],
+    }
+  ]
 }

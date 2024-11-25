@@ -7,16 +7,18 @@ import Socials from "../../components/Socials.astro";
 import Timeline from "../../components/Timeline.astro";
 import BriefCaseIcon from "../../icons/BriefCaseIcon.astro";
 import Layout from "../../layouts/Layout.astro";
-
-
+import ProjectsIcon from "../../icons/ProjectsIcon.astro";
+import Projects from "../../components/Projects.astro";
 ---
 
 <Layout title="Leo's portfolio">
 	<div class="flex flex-col overflow-hidden">
 		<SectionContainer class="py-32">
-			<div class="font-extrabold text-4xl bg-clip-text text-slate-200">
+			<div
+				class="font-extrabold tracking-tight text-5xl bg-clip-text text-slate-200"
+			>
 				Hey! I'm <span
-					class="text-indigo-500 inline-flex flex-col h-[calc(theme(fontSize.4xl)*theme(lineHeight.tight))] md:h-[calc(theme(fontSize.4xl)*theme(lineHeight.tight))] overflow-hidden"
+					class="text-indigo-500 inline-flex flex-col h-[calc(theme(fontSize.5xl)*theme(lineHeight.tight))] md:h-[calc(theme(fontSize.5xl)*theme(lineHeight.tight))] overflow-hidden"
 				>
 					<ul
 						class="block animate-text-slide-3 text-left leading-tight [&_li]:block"
@@ -45,13 +47,22 @@ import Layout from "../../layouts/Layout.astro";
 			<Socials />
 		</SectionContainer>
 
-		<SectionContainer id="experience" class="py-5">
+		<SectionContainer id="experience" class="py-10">
 			<div class="flex items-center gap-x-3 pb-5">
 				<BriefCaseIcon class="size-7" />
 				<h2 class="text-2xl font-bold">Work experience</h2>
 			</div>
 
 			<Timeline />
+		</SectionContainer>
+
+		<SectionContainer id="projects" class="py-10">
+			<div class="flex items-center gap-x-3 pb-5">
+				<ProjectsIcon class="size-7" />
+				<h2 class="text-3xl font-extrabold text-slate-200">Projects</h2>
+			</div>
+
+			<Projects />
 		</SectionContainer>
 	</div>
 </Layout>
