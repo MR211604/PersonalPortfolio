@@ -38,30 +38,36 @@ const currentLanguage = getLangFromUrl(Astro.url);
     aria-labelledby="menu-button"
     tabindex="-1"
   >
-    <div class="py-1" role="none">
-      {
-        Object.entries(languages).map(([lang, label]) => (
-          <SelectComponent href={`${lang === defaultLang ? "/" : lang}`}>
-            {label}
-          </SelectComponent>
-        ))
-      }
-    </div>
+    {
+      Object.entries(languages).map(([lang, label]) => (
+        <SelectComponent
+          id="option"
+          href={`${lang === defaultLang ? "/" : lang}`}
+        >
+          {label}
+        </SelectComponent>
+      ))
+    }
   </div>
 </div>
 
 <script>
   const select = document.querySelector("#select");
   const optionList = document.querySelector("#option-list");
+  const options = document.querySelectorAll("#option");
 
   select?.addEventListener("click", () => {
     optionList?.classList.toggle("active");
     if (optionList?.classList.contains("active")) {
-      optionList?.classList.remove("scale-95", "opacity-0");
+      options?.forEach((el) => {
+        el?.classList.add("block");
+        el?.classList.remove("hidden");
+      });
+      optionList?.classList.remove("scale-95", "opacity-0", "hidden");
       optionList?.classList.add("scale-100", "opacity-100");
     } else {
       optionList?.classList.remove("scale-100", "opacity-100");
-      optionList?.classList.add("scale-95", "opacity-0");
+      optionList?.classList.add("scale-95", "opacity-0", "hidden");
     }
   });
 </script>
