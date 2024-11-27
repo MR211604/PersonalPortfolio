@@ -2,15 +2,16 @@
 interface Props {
   href: string;
   id: string;
+  className?: string;
 }
 
-const { href, id } = Astro.props;
+const { href, id, className } = Astro.props;
 ---
 
 <a
   id={id}
-  class="hidden px-4 py-2 text-sm  text-gray-700 hover:bg-slate-300/50  
-  transiton-all ease-in-out duration-300"
+  class={`hidden text-sm text-gray-700 hover:bg-slate-300/50  
+  transiton-all ease-in-out duration-300 ${className}`}
   href={href}
 >
   <slot />

@@ -1,43 +1,86 @@
 ---
 import { getLangFromUrl, useTranslations } from "../i18n/utils";
+import BarsIcon from "../icons/BarsIcon.astro";
 import DarkThemeIcon from "../icons/DarkThemeIcon.astro";
 import LanguagePicker from "./LanguagePicker.astro";
+import NavItem from "./NavItem.astro";
+import SelectComponent from "./SelectComponent.astro";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
+
+const navItems = [
+  { href: "#experience", label: t("nav.experience") },
+  { href: "#projects", label: t("nav.projects") },
+  { href: "#about-me", label: t("nav.aboutMe") },
+  { href: "#contact", label: t("nav.contact") },
+];
 ---
 
 <header
-  class="top-0 z-10 flex w-full items-center justify-center py-5 mx-auto mt-2"
+  class="top-0 z-10 flex w-full items-center justify-center
+  max-md:flex-row-reverse
+  max-md:max-w-sm
+  max-md:justify-between
+  py-5 mx-auto mt-2"
 >
   <nav
-    class="flex text-sm font-medium rounded-full gap-x-10 text-gray-600 dark:text-gray-200 justify-center items-center"
+    class="text-sm font-medium gap-x-10 text-gray-600 dark:text-gray-200 justify-center items-center max-md:hidden md:flex"
   >
-    <p class="group relative">
-      <a href=`#experience`>{t("nav.experience")}</a>
-      <span
-        class="absolute -bottom-1 left-0 w-0 transition-all h-0.5 bg-indigo-600 group-hover:w-full"
-      ></span>
-    </p>
-    <p class="group relative">
-      <a href=`#projects`>{t("nav.projects")}</a>
-      <span
-        class="absolute -bottom-1 left-0 w-0 transition-all h-0.5 bg-indigo-600 group-hover:w-full"
-      ></span>
-    </p>
-    <p class="group relative">
-      <a href=`#about-me`>{t("nav.aboutMe")}</a>
-      <span
-        class="absolute -bottom-1 left-0 w-0 transition-all h-0.5 bg-indigo-600 group-hover:w-full"
-      ></span>
-    </p>
-    <p class="group relative">
-      <a href=`#contact`>{t("nav.contact")}</a>
-      <span
-        class="absolute -bottom-1 left-0 w-0 transition-all h-0.5 bg-indigo-600 group-hover:w-full"
-      ></span>
-    </p>
+    {navItems.map((item) => <NavItem href={item.href} label={item.label} />)}
+  </nav>
+
+  <a id="responsiveNavBar" class="flex md:hidden cursor-pointer rounded-full">
+    <BarsIcon class="size-10" />
+  </a>
+
+  <nav
+    class="flex md:ml-10 gap-x-5 text-sm font-medium sm:justify-end md:justify-center items-center"
+  >
     <DarkThemeIcon />
     <LanguagePicker />
   </nav>
 </header>
+
+<div class="flex justify-center items-center px-4 min-[768px]:hidden">
+  <div
+    class="flex flex-col w-full h-full bg-white rounded-xl"
+    id="responsiveItems"
+  >
+    {
+      navItems.map((item) => (
+        <SelectComponent
+          id="responsiveOption"
+          className="p-3 flex justify-center"
+          href={item.href}
+        >
+          {item.label}
+        </SelectComponent>
+      ))
+    }
+  </div>
+</div>
+
+<script>
+  const responsiveNavBar = document.querySelector("#responsiveNavBar");
+  const responsiveItems = document.querySelector("#responsiveItems");
+  const responsiveOptions = document.querySelectorAll("#responsiveOption");
+
+  responsiveNavBar?.addEventListener("click", () => {
+    responsiveItems?.classList.toggle("hidden");
+    responsiveOptions.forEach((el) => {
+      el.classList.remove("hidden");
+      el.classList.toggle("block");
+    });
+  });
+
+  responsiveOptions.forEach((el) => {
+    el.addEventListener("click", () => {
+      responsiveItems?.classList.add("hidden");
+      responsiveOptions.forEach((el) => {
+        el.classList.remove("block");
+        el.classList.toggle("hidden");
+      });
+    });
+  });
+</script>

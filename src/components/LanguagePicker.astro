@@ -6,7 +6,7 @@ import SelectComponent from "./SelectComponent.astro";
 const currentLanguage = getLangFromUrl(Astro.url);
 ---
 
-<div class="relative inline-block text-left">
+<div class="relative inline-block text-left" id="language-picker">
   <div>
     <span
       class="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm text-black shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-slate-200 transition ease-in-out duration-300 cursor-pointer"
@@ -31,7 +31,7 @@ const currentLanguage = getLangFromUrl(Astro.url);
   </div>
 
   <div
-    class="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black/5 focus:outline-none transition-all duration-300 ease-in-out transform scale-95 opacity-0"
+    class="absolute z-10 mt-2 w-40 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black/5 focus:outline-none transition-all duration-400 ease-in-out transform scale-95 opacity-0"
     id="option-list"
     role="menu"
     aria-orientation="vertical"
@@ -42,6 +42,7 @@ const currentLanguage = getLangFromUrl(Astro.url);
       Object.entries(languages).map(([lang, label]) => (
         <SelectComponent
           id="option"
+          className="px-4 py-2"
           href={`${lang === defaultLang ? "/" : lang}`}
         >
           {label}
@@ -55,19 +56,35 @@ const currentLanguage = getLangFromUrl(Astro.url);
   const select = document.querySelector("#select");
   const optionList = document.querySelector("#option-list");
   const options = document.querySelectorAll("#option");
+  const languagePicker = document.querySelector("#language-picker");
+
+  const showOptions = () => {
+    options.forEach((el) => {
+      el.classList.add("block");
+      el.classList.remove("hidden");
+    });
+    optionList?.classList.remove("scale-95", "opacity-0");
+    optionList?.classList.add("scale-100", "opacity-100");
+  };
+
+  const hideOptions = () => {
+    options.forEach((el) => {
+      el.classList.add("hidden");
+      el.classList.remove("block");
+    });
+    optionList?.classList.remove("scale-100", "opacity-100");
+    optionList?.classList.add("scale-95", "opacity-0");
+  };
 
   select?.addEventListener("click", () => {
     optionList?.classList.toggle("active");
-    if (optionList?.classList.contains("active")) {
-      options?.forEach((el) => {
-        el?.classList.add("block");
-        el?.classList.remove("hidden");
-      });
-      optionList?.classList.remove("scale-95", "opacity-0", "hidden");
-      optionList?.classList.add("scale-100", "opacity-100");
-    } else {
-      optionList?.classList.remove("scale-100", "opacity-100");
-      optionList?.classList.add("scale-95", "opacity-0", "hidden");
+    optionList?.classList.contains("active") ? showOptions() : hideOptions();
+  });
+
+  document.addEventListener("click", (event) => {
+    if (!languagePicker?.contains(event.target as Node)) {
+      optionList?.classList.remove("active");
+      hideOptions();
     }
   });
 </script>
