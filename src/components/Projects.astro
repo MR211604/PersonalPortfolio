@@ -7,34 +7,44 @@ import WebIcon from "../icons/WebIcon.astro";
 const lang = getLangFromUrl(Astro.url);
 ---
 
-{
-  projects[lang].map(({ title, description, tags, link, redirectName, github, image }) => (
-    <article class="py-5">
-      <h3 class="text-2xl font-semibold text-slate-200 pb-2">{title}</h3>
-      <p class="text-pretty">{description}</p>
-      <ul class="flex flex-row gap-x-3 py-2">
-        {tags.map((tag) => (
-          <span
-            class={`flex items-center gap-x-2 px-3 py-0.5 rounded-full ${tag.class}`}
-          >
-            <tag.icon class="size-5" />
-            <li>{tag.name}</li>
+<div class="flex flex-col overflow-hidden w-full">
+  {
+    projects[lang].map(
+      ({ title, description, tags, link, redirectName, github, image }) => (
+        <article class="flex flex-col space-x-0 py-5">
+          <h3 class="text-2xl font-semibold text-slate-200 pb-2">{title}</h3>
+          <p class="text-pretty">{description}</p>
+          <ul class="flex md:gap-x-3 gap-3 py-2 flex-wrap">
+            {tags.map((tag) => (
+              <span
+                class={`flex items-center gap-x-2 px-3 py-0.5 rounded-full ${tag.class}`}
+              >
+                <tag.icon class="size-5" />
+                <li>{tag.name}</li>
+              </span>
+            ))}
+          </ul>
+          <img
+            class="object-cover rounded-lg object-top w-full h-full transition duration-500"
+            src={image}
+            alt={`${image} screenshot`}
+          />
+          <span class="flex items-center flex-row pt-4 gap-x-3">
+            <a
+              href={github}
+              class="flex gap-x-2 rounded-full bg-slate-700 border border-slate-300 hover:scale-110 transition-all ease-out px-3 py-0.5 items-center"
+            >
+              GitHub <GithubIcon class="size-4" />
+            </a>
+            <a
+              href={link}
+              class="flex gap-x-2 rounded-full bg-slate-700 border border-slate-300 hover:scale-110 transition-all ease-out px-3 py-0.5 items-center"
+            >
+              {redirectName} <WebIcon class="size-4" />
+            </a>
           </span>
-        ))}
-      </ul>
-      <img
-        class="object-cover h-full rounded-lg shadow-xl shadow-white/10"
-        src={image}
-        alt={`${image} screenshot`}
-      />
-      <span class="flex items-center flex-row pt-4 gap-x-3">
-        <a href={github} class="flex gap-x-2 rounded-full bg-slate-700 border border-slate-300 hover:scale-110 transition-all ease-out px-3 py-0.5 items-center">
-          GitHub <GithubIcon class="size-4" />
-        </a>
-        <a href={link} class="flex gap-x-2 rounded-full bg-slate-700 border border-slate-300 hover:scale-110 transition-all ease-out px-3 py-0.5 items-center">
-          {redirectName} <WebIcon class="size-4" />
-        </a>
-      </span>
-    </article>
-  ))
-}
+        </article>
+      ),
+    )
+  }
+</div>

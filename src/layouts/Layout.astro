@@ -22,9 +22,7 @@ const lang = getLangFromUrl(Astro.url);
 		<title>{title}</title>
 	</head>
 	<body class="relative">
-		<!-- <div
-			class="absolute top-0 z-[-2] h-full w-screen bg-neutral-950 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.3),rgba(255,255,255,0))]"
-		> -->
+
 			<div class="absolute top-0 bottom-0 z-[-2] min-h-screen w-full bg-gray-50 dark:bg-gray-950      
       dark:bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(35,18,64,0.8),rgba(255,255,255,0))]">
 
@@ -48,6 +46,7 @@ const lang = getLangFromUrl(Astro.url);
 		justify-content: center;
 		flex-direction: column;
 		font-family: "Onest", sans-serif;
+		min-height: 100vh;
 	}
 
 	@media (prefers-reduced-motion: reduce) {

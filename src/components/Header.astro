@@ -7,16 +7,12 @@ const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 ---
 
-<div
-  class="text-white flex justify-between items-center py-5 md:w-[750px] mx-auto"
+<header
+  class="top-0 z-10 flex w-full items-center justify-center py-5 mx-auto mt-2"
 >
-  <nav class="flex flex-row gap-x-10 cursor-pointer">
-    <p class="group relative">
-      <a href=`#top`>{t("nav.home")}</a>
-      <span
-        class="absolute -bottom-1 left-0 w-0 transition-all h-0.5 bg-indigo-600 group-hover:w-full"
-      ></span>
-    </p>
+  <nav
+    class="flex text-sm font-medium rounded-full gap-x-10 text-gray-600 dark:text-gray-200 justify-center items-center"
+  >
     <p class="group relative">
       <a href=`#experience`>{t("nav.experience")}</a>
       <span
@@ -41,11 +37,7 @@ const t = useTranslations(lang);
         class="absolute -bottom-1 left-0 w-0 transition-all h-0.5 bg-indigo-600 group-hover:w-full"
       ></span>
     </p>
-  </nav>
-
-  <div class="flex items-center flex-row gap-x-10">
     <DarkThemeIcon />
-
     <LanguagePicker />
-  </div>
-</div>
+  </nav>
+</header>
